@@ -1,0 +1,18 @@
+version: "3.9"
+
+# Development overrides — run with: docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+services:
+  api:
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload --log-level debug
+    environment:
+      APP_ENV: development
+
+  geoapi:
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8100 --reload --log-level debug
+
+  worker:
+    command: celery -A app.workers.celery_app worker --loglevel=debug --concurrency=2
+
+  web:
+    environment:
+      NODE_ENV: development

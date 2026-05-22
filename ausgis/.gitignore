@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+*.egg-info/
+dist/
+.pytest_cache/
+
+# Node
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker volumes (local dev)
+pgdata/
+redisdata/
+miniodata/
+
+# Data bootstrap (large files)
+/tmp/ausgis-bootstrap/
+*.pbf
+*.osm

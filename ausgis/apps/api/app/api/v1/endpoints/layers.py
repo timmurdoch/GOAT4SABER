@@ -18,6 +18,14 @@ from app.services.ingest import ingest_file, SUPPORTED_EXTENSIONS
 router = APIRouter(prefix="/layers", tags=["layers"])
 
 
+@router.get("", response_model=list[LayerResponse])
+async def list_layers(project_id: str, current_user: CurrentUser, db: DB):
+    result = await db.execute(
+        select(Layer).where(Layer.project_id == project_id).order_by(Layer.created_at.desc())
+    )
+    return result.scalars().all()
+
+
 async def _require_layer_access(layer_id: str, user_id: str, db: DB, write: bool = False) -> Layer:
     result = await db.execute(select(Layer).where(Layer.id == layer_id))
     layer = result.scalar_one_or_none()

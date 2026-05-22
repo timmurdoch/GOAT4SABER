@@ -54,6 +54,7 @@ export const projectsApi = {
 };
 
 export const layersApi = {
+  list: (projectId: string) => api.get("/layers", { params: { project_id: projectId } }),
   upload: (formData: FormData) =>
     api.post("/layers/upload", formData, { headers: { "Content-Type": "multipart/form-data" } }),
   get: (id: string) => api.get(`/layers/${id}`),

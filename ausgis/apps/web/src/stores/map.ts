@@ -29,6 +29,7 @@ interface MapState {
   setBasemap: (basemap: string) => void;
   setViewState: (vs: Partial<MapState["viewState"]>) => void;
   reorderLayers: (layers: MapLayer[]) => void;
+  clearLayers: () => void;
 }
 
 export const useMapStore = create<MapState>()((set) => ({
@@ -56,6 +57,7 @@ export const useMapStore = create<MapState>()((set) => ({
   setBasemap: (basemap) => set({ basemap }),
   setViewState: (vs) => set((s) => ({ viewState: { ...s.viewState, ...vs } })),
   reorderLayers: (layers) => set({ layers }),
+  clearLayers: () => set({ layers: [], selectedLayerId: null }),
 }));
 
 export const BASEMAPS: Record<string, string> = {

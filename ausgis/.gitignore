@@ -32,3 +32,8 @@ miniodata/
 /tmp/ausgis-bootstrap/
 *.pbf
 *.osm
+apps/web/core
+apps/web/.next
+apps/web/node_modules
+apps/api/__pycache__
+apps/geoapi/__pycache__

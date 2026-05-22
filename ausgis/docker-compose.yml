@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   db:
-    image: postgis/postgis:15-3.4
+    image: pgrouting/pgrouting:15-3.5-4.0
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-ausgis}
       POSTGRES_USER: ${POSTGRES_USER:-ausgis}
@@ -108,14 +108,10 @@ services:
       context: ./apps/web
       dockerfile: Dockerfile
     environment:
-      NEXT_PUBLIC_API_URL: http://localhost:8000
-      NEXT_PUBLIC_GEOAPI_URL: http://localhost:8100
+      NEXT_PUBLIC_API_URL: http://192.168.2.14
+      NEXT_PUBLIC_GEOAPI_URL: http://192.168.2.14
     ports:
       - "3000:3000"
-    volumes:
-      - ./apps/web:/app
-      - /app/node_modules
-      - /app/.next
     depends_on:
       - api
 
@@ -134,3 +130,4 @@ volumes:
   pgdata:
   redisdata:
   miniodata:
+  nextcache:

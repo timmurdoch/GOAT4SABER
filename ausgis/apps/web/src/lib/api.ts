@@ -65,15 +65,29 @@ export const layersApi = {
 };
 
 export const analysisApi = {
-  isochrone: (payload: Record<string, unknown>) =>
-    api.post("/analysis/isochrone", payload),
-  buffer: (payload: Record<string, unknown>) =>
-    api.post("/analysis/buffer", payload),
-  pointInPolygon: (payload: Record<string, unknown>) =>
-    api.post("/analysis/point-in-polygon", payload),
-  spatialJoin: (payload: Record<string, unknown>) =>
-    api.post("/analysis/spatial-join", payload),
+  // Basic
+  isochrone: (payload: Record<string, unknown>) => api.post("/analysis/isochrone", payload),
+  buffer: (payload: Record<string, unknown>) => api.post("/analysis/buffer", payload),
+  pointInPolygon: (payload: Record<string, unknown>) => api.post("/analysis/point-in-polygon", payload),
+  spatialJoin: (payload: Record<string, unknown>) => api.post("/analysis/spatial-join", payload),
+  // Network
+  shortestPath: (payload: Record<string, unknown>) => api.post("/analysis/shortest-path", payload),
+  odMatrix: (payload: Record<string, unknown>) => api.post("/analysis/od-matrix", payload),
+  catchmentPopulation: (payload: Record<string, unknown>) => api.post("/analysis/catchment-population", payload),
+  // Overlay / geometry
+  clip: (payload: Record<string, unknown>) => api.post("/analysis/clip", payload),
+  overlay: (payload: Record<string, unknown>) => api.post("/analysis/overlay", payload),
+  dissolve: (payload: Record<string, unknown>) => api.post("/analysis/dissolve", payload),
+  centroid: (payload: Record<string, unknown>) => api.post("/analysis/centroid", payload),
+  convexHull: (payload: Record<string, unknown>) => api.post("/analysis/convex-hull", payload),
+  voronoi: (payload: Record<string, unknown>) => api.post("/analysis/voronoi", payload),
+  // Point analysis
+  kernelDensity: (payload: Record<string, unknown>) => api.post("/analysis/kernel-density", payload),
+  cluster: (payload: Record<string, unknown>) => api.post("/analysis/cluster", payload),
+  hexbin: (payload: Record<string, unknown>) => api.post("/analysis/hexbin", payload),
+  // Jobs
   getJob: (jobId: string) => api.get(`/analysis/jobs/${jobId}`),
+  listJobs: (projectId: string) => api.get(`/analysis/jobs`, { params: { project_id: projectId } }),
 };
 
 export const geocodeApi = {

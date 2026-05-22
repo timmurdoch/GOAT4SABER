@@ -5,7 +5,12 @@ celery_app = Celery(
     "ausgis",
     broker=settings.CELERY_BROKER_URL,
     backend=settings.CELERY_RESULT_BACKEND,
-    include=["app.workers.analysis_tasks"],
+    include=[
+        "app.workers.analysis_tasks",
+        "app.workers.network_tasks",
+        "app.workers.vector_tasks",
+        "app.workers.point_tasks",
+    ],
 )
 
 celery_app.conf.update(
